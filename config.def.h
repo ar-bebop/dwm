@@ -103,6 +103,13 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_e,      exitdwm,       {0} },
 	{ MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {1} }, 
+    { MODKEY,                       XK_s, scratchpad_show, {.i = 1} },
+    { MODKEY,                       XK_y, scratchpad_show, {.i = 2} },
+    { MODKEY,                       XK_u, scratchpad_show, {.i = 3} },
+    { MODKEY|ShiftMask,             XK_s, scratchpad_hide, {.i = 1} },
+    { MODKEY|ShiftMask,             XK_y, scratchpad_hide, {.i = 2} },
+    { MODKEY|ShiftMask,             XK_u, scratchpad_hide, {.i = 3} },
+	{ MODKEY|ShiftMask,             XK_r, scratchpad_remove, {0} },
 };
 
 /* button definitions */
