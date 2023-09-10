@@ -872,6 +872,8 @@ focus(Client *c)
 		XDeleteProperty(dpy, root, netatom[NetActiveWindow]);
 	}
 	selmon->sel = c;
+	if (selmon->sel)
+		resizeclient(c, c->x, c->y, c->w, c->h);
 	drawbars();
 }
 
@@ -1510,7 +1512,13 @@ resizeclient(Client *c, int x, int y, int w, int h)
 	c->oldy = c->y; c->y = wc.y = y;
 	c->oldw = c->w; c->w = wc.width = w;
 	c->oldh = c->h; c->h = wc.height = h;
-	wc.border_width = c->bw;
+	if (c == selmon->sel)
+		wc.border_width = c->bw;
+	else {
+		wc.border_width = 0;
+		wc.x += c->bw;
+		wc.y += c->bw;
+	}
 	XConfigureWindow(dpy, c->win, CWX|CWY|CWWidth|CWHeight|CWBorderWidth, &wc);
 	configure(c);
 	XSync(dpy, False);
@@ -2004,6 +2012,10 @@ showhide(Client *c)
 		/* show clients top down */
 		window_map(dpy, c, 1);
 		showhide(c->snext);
+		if (selmon->sel == c)
+			XMoveWindow(dpy, c->win, c->x, c->y);
+		else
+			XMoveWindow(dpy, c->win, c->x + borderpx, c->y + borderpx);
 	} else {
 		/* hide clients bottom up */
 		showhide(c->snext);
@@ -2182,6 +2194,9 @@ unfocus(Client *c, int setfocus)
 		XSetInputFocus(dpy, root, RevertToPointerRoot, CurrentTime);
 		XDeleteProperty(dpy, root, netatom[NetActiveWindow]);
 	}
+	if (c == selmon->sel)
+		selmon->sel = NULL;
+	resizeclient(c, c->x, c->y, c->w, c->h);
 }
 
 void
