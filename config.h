@@ -21,28 +21,35 @@ static char col3[]            = "#ffffff";
 static char col4[]            = "#ffffff";
 static char col5[]            = "#ffffff";
 static char col6[]            = "#ffffff";
-static const unsigned int baralpha = 0xd0;
+static const unsigned int baralpha = OPAQUE;
 static const unsigned int borderalpha = OPAQUE;
 
 enum { SchemeNorm, SchemeSel, SchemeUrg, SchemeCol1, SchemeCol2, SchemeCol3, SchemeCol4,
        SchemeCol5, SchemeCol6 }; /* color schemes */
 
 static char *colors[][3]      = {
-	/*               fg         bg         border   */
+    /*                fg            bg           border          */
     [SchemeNorm]  = { normfgcolor,  normbgcolor, normbordercolor },
     [SchemeSel]   = { selfgcolor,   selbgcolor,  selbordercolor  },
 	[SchemeUrg]   = { selfgcolor,   selbgcolor,  col_urgborder  },
-	[SchemeCol1]  = { col1,         normbgcolor, normbordercolor },
-	[SchemeCol2]  = { col2,         normbgcolor, normbordercolor },
-	[SchemeCol3]  = { col3,         normbgcolor, normbordercolor },
-	[SchemeCol4]  = { col4,         normbgcolor, normbordercolor },
-	[SchemeCol5]  = { col5,         normbgcolor, normbordercolor },
-	[SchemeCol6]  = { col6,         normbgcolor, normbordercolor },
+	[SchemeCol1]  = { col1,         normbgcolor, normbgcolor },
+	[SchemeCol2]  = { col2,         normbgcolor, normbgcolor },
+	[SchemeCol3]  = { col3,         normbgcolor, normbgcolor },
+	[SchemeCol4]  = { col4,         normbgcolor, normbgcolor },
+	[SchemeCol5]  = { col5,         normbgcolor, normbgcolor },
+	[SchemeCol6]  = { col6,         normbgcolor, normbgcolor },
 };
 static const unsigned int alphas[][3]      = {
     /*               fg      bg        border     */
     [SchemeNorm] = { OPAQUE, baralpha, borderalpha },
 	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
+	[SchemeUrg]  = { OPAQUE, baralpha, borderalpha  },
+	[SchemeCol1] = { OPAQUE, baralpha, borderalpha },
+	[SchemeCol2] = { OPAQUE, baralpha, borderalpha },
+	[SchemeCol3] = { OPAQUE, baralpha, borderalpha },
+	[SchemeCol4] = { OPAQUE, baralpha, borderalpha },
+	[SchemeCol5] = { OPAQUE, baralpha, borderalpha },
+	[SchemeCol6] = { OPAQUE, baralpha, borderalpha },
 };
 
 /* tagging */

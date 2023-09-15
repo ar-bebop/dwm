@@ -43,6 +43,13 @@ static const unsigned int alphas[][3]      = {
     /*               fg      bg        border     */
     [SchemeNorm] = { OPAQUE, baralpha, borderalpha },
 	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
+	[SchemeUrg]  = { OPAQUE, baralpha, borderalpha  },
+	[SchemeCol1] = { OPAQUE, baralpha, borderalpha },
+	[SchemeCol2] = { OPAQUE, baralpha, borderalpha },
+	[SchemeCol3] = { OPAQUE, baralpha, borderalpha },
+	[SchemeCol4] = { OPAQUE, baralpha, borderalpha },
+	[SchemeCol5] = { OPAQUE, baralpha, borderalpha },
+	[SchemeCol6] = { OPAQUE, baralpha, borderalpha },
 };
 
 /* tagging */
