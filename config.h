@@ -29,15 +29,15 @@ enum { SchemeNorm, SchemeSel, SchemeUrg, SchemeCol1, SchemeCol2, SchemeCol3, Sch
 
 static char *colors[][3]      = {
 	/*               fg         bg         border   */
-    [SchemeNorm]  = { normfgcolor, normbgcolor, normbordercolor },
-    [SchemeSel]   = { selfgcolor,  selbgcolor,  selbordercolor  },
-	[SchemeUrg]   = { selfgcolor, selbgcolor,  col_urgborder  },
-	[SchemeCol1]  = { col1,      normfgcolor, normbordercolor },
-	[SchemeCol2]  = { col2,      normfgcolor, normbordercolor },
-	[SchemeCol3]  = { col3,      normfgcolor, normbordercolor },
-	[SchemeCol4]  = { col4,      normfgcolor, normbordercolor },
-	[SchemeCol5]  = { col5,      normfgcolor, normbordercolor },
-	[SchemeCol6]  = { col6,      normfgcolor, normbordercolor },
+    [SchemeNorm]  = { normfgcolor,  normbgcolor, normbordercolor },
+    [SchemeSel]   = { selfgcolor,   selbgcolor,  selbordercolor  },
+	[SchemeUrg]   = { selfgcolor,   selbgcolor,  col_urgborder  },
+	[SchemeCol1]  = { col1,         normbgcolor, normbordercolor },
+	[SchemeCol2]  = { col2,         normbgcolor, normbordercolor },
+	[SchemeCol3]  = { col3,         normbgcolor, normbordercolor },
+	[SchemeCol4]  = { col4,         normbgcolor, normbordercolor },
+	[SchemeCol5]  = { col5,         normbgcolor, normbordercolor },
+	[SchemeCol6]  = { col6,         normbgcolor, normbordercolor },
 };
 static const unsigned int alphas[][3]      = {
     /*               fg      bg        border     */
