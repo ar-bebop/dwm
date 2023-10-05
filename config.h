@@ -101,9 +101,6 @@ static const char *termcmd[]  = { "st", NULL };
 static const char *volume_up[]   = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+10%",   NULL };
 static const char *volume_down[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-10%",   NULL };
 static const char *volume_mute[] = { "pactl", "set-sink-mute",   "@DEFAULT_SINK@", "toggle", NULL };
-static const char *brightness_up[] = { "light", "-A", "10%", NULL };
-static const char *brightness_down[] = { "light", "-U", "10%", NULL };
-static const char *brightness_sig[] = { "sigdwmblocks", "3", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -172,10 +169,8 @@ static const Key keys[] = {
 	{ 0, XF86XK_AudioRaiseVolume,   spawn, {.v = volume_up } },
 	{ 0, XF86XK_AudioLowerVolume,   spawn, {.v = volume_down } },
 	{ 0, XF86XK_AudioMute,          spawn, {.v = volume_mute } },
-	{ 0, XF86XK_MonBrightnessUp,    spawn, {.v = brightness_up } },
-	{ 0, XF86XK_MonBrightnessUp,    spawn, {.v = brightness_sig } },
-	{ 0, XF86XK_MonBrightnessDown,  spawn, {.v = brightness_down } },
-	{ 0, XF86XK_MonBrightnessDown,  spawn, {.v = brightness_sig } },
+	{ 0, XF86XK_MonBrightnessUp,    spawn, SHCMD("brillo -u 200000 -A 10; sigdwmblocks 3") },
+	{ 0, XF86XK_MonBrightnessDown,  spawn, SHCMD("brillo -u 200000 -U 10; sigdwmblocks 3") },
 };
 
 /* button definitions */
