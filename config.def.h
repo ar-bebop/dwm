@@ -22,7 +22,7 @@ static char col3[]            = "#ffffff";
 static char col4[]            = "#ffffff";
 static char col5[]            = "#ffffff";
 static char col6[]            = "#ffffff";
-static const unsigned int baralpha = 0xd0;
+static const unsigned int baralpha = OPAQUE;
 static const unsigned int borderalpha = OPAQUE;
 
 enum { SchemeNorm, SchemeSel, SchemeUrg, SchemeCol1, SchemeCol2, SchemeCol3, SchemeCol4,

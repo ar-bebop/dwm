@@ -1,5 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
+#include <X11/XF86keysym.h>
+
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const Gap default_gap        = {.isgap = 1, .realgap = 10, .gappx = 10};
@@ -96,6 +98,12 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", normbgcolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "st", NULL };
+static const char *volume_up[]   = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+10%",   NULL };
+static const char *volume_down[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-10%",   NULL };
+static const char *volume_mute[] = { "pactl", "set-sink-mute",   "@DEFAULT_SINK@", "toggle", NULL };
+static const char *brightness_up[] = { "light", "-A", "10%", NULL };
+static const char *brightness_down[] = { "light", "-U", "10%", NULL };
+static const char *brightness_sig[] = { "sigdwmblocks", "3", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -161,6 +169,13 @@ static const Key keys[] = {
     { MODKEY|ShiftMask,             XK_y,      scratchpad_hide, {.i = 2} },
     { MODKEY|ShiftMask,             XK_u,      scratchpad_hide, {.i = 3} },
 	{ MODKEY|ShiftMask,             XK_r,      scratchpad_remove, {0} },
+	{ 0, XF86XK_AudioRaiseVolume,   spawn, {.v = volume_up } },
+	{ 0, XF86XK_AudioLowerVolume,   spawn, {.v = volume_down } },
+	{ 0, XF86XK_AudioMute,          spawn, {.v = volume_mute } },
+	{ 0, XF86XK_MonBrightnessUp,    spawn, {.v = brightness_up } },
+	{ 0, XF86XK_MonBrightnessUp,    spawn, {.v = brightness_sig } },
+	{ 0, XF86XK_MonBrightnessDown,  spawn, {.v = brightness_down } },
+	{ 0, XF86XK_MonBrightnessDown,  spawn, {.v = brightness_sig } },
 };
 
 /* button definitions */
