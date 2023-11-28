@@ -98,14 +98,16 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", normbgcolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "st", NULL };
+static const char *browsercmd[]  = { "qutebrowser", NULL };
 static const char *volume_up[]   = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+10%",   NULL };
 static const char *volume_down[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-10%",   NULL };
 static const char *volume_mute[] = { "pactl", "set-sink-mute",   "@DEFAULT_SINK@", "toggle", NULL };
+static const char *mic_mute[] = { "pactl", "set-source-mute",   "@DEFAULT_SOURCE@", "toggle", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd} },
+	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd} },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -169,8 +171,11 @@ static const Key keys[] = {
 	{ 0, XF86XK_AudioRaiseVolume,   spawn, {.v = volume_up } },
 	{ 0, XF86XK_AudioLowerVolume,   spawn, {.v = volume_down } },
 	{ 0, XF86XK_AudioMute,          spawn, {.v = volume_mute } },
+	{ 0, XF86XK_AudioMicMute,       spawn, {.v = mic_mute } },
 	{ 0, XF86XK_MonBrightnessUp,    spawn, SHCMD("brillo -u 200000 -A 10; sigdwmblocks 3") },
 	{ 0, XF86XK_MonBrightnessDown,  spawn, SHCMD("brillo -u 200000 -U 10; sigdwmblocks 3") },
+	{ 0, XF86XK_Favorites,          spawn, {.v = termcmd } },
+	{ 0, XF86XK_Display,            spawn, {.v = browsercmd } },
 };
 
 /* button definitions */
